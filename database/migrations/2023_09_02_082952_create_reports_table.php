@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reporter_id');
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->nullable();
             $table->string('tiket_id');
             $table->string('title');
             $table->text('description');
