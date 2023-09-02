@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +15,40 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // Membuat user secara manual
+        User::create([
+            'name' => 'Iqbal',
+            'username' => 'iqbal',
+            'email' => 'iqbal@gmail.com',
+            'phone_number' => '081234567890',
+            'password' => bcrypt('password'),
+        ]);
+        
+        // Memanggil factory user
+        User::factory(4)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Membuat category secara manual
+        Category::create([
+            'name' => 'Infrastruktur',
+            'slug' => 'infrastruktur',
+        ]);
+        Category::create([
+            'name' => 'Lingkungan',
+            'slug' => 'lingkungan',
+        ]);
+        Category::create([
+            'name' => 'Layanan Publik',
+            'slug' => 'layanan-publik',
+        ]);
+        Category::create([
+            'name' => 'Keamanan',
+            'slug' => 'keamanan',
+        ]);
+        Category::create([
+            'name' => 'Kesehatan',
+            'slug' => 'kesehatan',
+        ]);
+
+        
     }
 }
