@@ -10,7 +10,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Form Pengisian Report</h1>
                         </div>
-                        <form action="/report" method="POST">
+                        <form action="/reporter" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="form-label">Nama</label>
@@ -98,7 +98,7 @@
                                 <input id="report" type="hidden" name="report" value="{{ old('report') }}">
                                 <trix-editor input="report"></trix-editor>
                             </div>
-                            <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
+                            <button class="btn btn-primary btn-user btn-block" type="submit">Kirim Laporan</button>
                             <hr>
                         </form>
                     </div>
