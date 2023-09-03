@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReporterController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,9 @@ Route::post('/login',[LoginController::class, 'authenticate']);
 Route::get('/logout',[LoginController::class, 'logout']);
 
 Route::get('/dashboard', fn()=> view('/dashboard.index'))->middleware(['auth']);
-Route::get('/report', [ReporterController::class, 'index'])->middleware(['guest']);
-Route::post('/report',[ReporterController::class, 'store'])->middleware(['guest']);
+Route::get('/reporter', [ReporterController::class, 'index'])->middleware(['guest']);
+Route::post('/reporter',[ReporterController::class, 'store'])->middleware(['guest']);
+Route::get('/dashboard/reporter/{id}', [ReporterController::class, 'show'])->middleware(['auth']);
 
-
+Route::resource('/dashboard/report', ReportController::class)->middleware('auth');
 // Route::resource('/dashboard', DashboardController::class)->middleware('auth');
