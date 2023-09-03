@@ -24,15 +24,8 @@ class ReportController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function ($report) {
                 $button ='
-                <td>
-                      <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info">Show</a>
-                      <a href="/dashboard/report/'.$report->id.'/edit" class="badge bg-warning">Edit</a>
-                      <form action="/dashboard/posts/{{ $post->slug }}" method="DELETE" class="d-inline">
-                        <button class="badge bg-danger border-0" onclick="return confirm("Are you sure?")">
-                          Delate
-                        </button>
-                      </form>
-                  </td>
+                    <a href="/dashboard/report/'.$report->id.'" class="btn btn-info">Show</a>
+                    <a href="/dashboard/report/'.$report->id.'/edit" class="btn btn-warning">Edit</a>
                 ';
                 return $button;
             })
@@ -63,7 +56,9 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return view('dashboard.report.show',[
+            'report' => $report,
+        ]);
     }
 
     /**
