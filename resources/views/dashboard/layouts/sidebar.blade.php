@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -27,18 +27,25 @@
         Interface
     </div>
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <!-- Nav Item - Report List -->
+    <li class="nav-item {{ Request::is('dashboard/report') ? 'active' : '' }}">
         <a class="nav-link" href="/dashboard/report">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <i class="fa-solid fa-file"></i>
+            <span>Report List</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Report Tracker -->
+    <li class="nav-item {{ Request::is('dashboard/report-tracker') ? 'active' : '' }}">
+        <a class="nav-link" href="/dashboard/report-tracker">
+            <i class="fa-brands fa-stack-overflow"></i>
+            <span>Report Tracker</span></a>
+    </li>
+
+    <!-- Nav Item - Log Activity -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+        <a class="nav-link" href="#">
+            <i class="fa-solid fa-signs-post"></i>
+            <span>Log Activity</span></a>
     </li>
 
     <!-- Divider -->
