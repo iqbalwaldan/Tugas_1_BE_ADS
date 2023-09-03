@@ -22,19 +22,17 @@ class ReporterController extends Controller
             'pob' => 'required',
             'dob' => 'required',
             'address' => 'required',
-            'report_title' => 'required|max:255',
-            'report' => 'required',
         ]);
         Reporter::create($validatedData1);
 
         $validatedData2 = $request->validate([
             'report_title' => 'required|max:255',
-            'report' => 'required',
+            'body' => 'required',
         ]);
 
         $validatedData2['reporter_id'] = Reporter::latest()->first()->id;
-        $validatedData2['title'] = $validatedData1['report_title'];
-        $validatedData2['description'] = $validatedData1['report'];
+        $validatedData2['title'] = $validatedData2['report_title'];
+        $validatedData2['description'] = $validatedData2['body'];
         $validatedData2['tiket_id'] = 'T'.date('YmdHis');
         $validatedData2['status'] = 'Pending';
 
@@ -42,6 +40,6 @@ class ReporterController extends Controller
 
         Report::create($validatedData2);
 
-        return redirect('/report')->with('success', 'New report has been added!');
+        return redirect('/')->with('success', 'New report has been added!');
     }
 }

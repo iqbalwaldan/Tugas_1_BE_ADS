@@ -15,13 +15,17 @@ class ReportController extends Controller
      */
     public function index()
     {
-        // return view('dashboard.report.index', [
-        //     'reports' => Report::latest()->get()    
-        // ]);
         if (request()->ajax()) {
-            $reports = Report::all();
-            return DataTables::of($reports)
+            $report = Report::all();
+            return DataTables::of($report)
             ->addIndexColumn()
+            ->addColumn('category', function ($report) {
+                if ($report->category == null) {
+                    return 'No Category';
+                }else{
+                    return $report->category->name;
+                }
+            })
             ->addColumn('action', function ($report) {
                 $button ='
                     <a href="/dashboard/report/'.$report->id.'" class="btn btn-info">Show</a>
@@ -81,14 +85,15 @@ class ReportController extends Controller
 
         $report -> update($request->all());
         
-        $validatedData1 = [
-            'user_id' => auth()->user()->id,
-            'report_id' => $report->id,
-            'status' => $report->status,
-            'note'  => 'update status to '.$report->status,
-        ];
+        $data = [
+                'user_id' => auth()->user()->id,
+                'report_id' => $report->id,
+                'status' => $report->status,
+                'note'  => $request->note,
+            ];
+    
+        Report_tracker::create($data);
 
-        Report_tracker::create($validatedData1);
 
         return redirect('/dashboard/report')->with('success', 'Report has been updated!');
     }

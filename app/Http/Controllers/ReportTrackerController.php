@@ -16,6 +16,6 @@ class ReportTrackerController extends Controller
             ->addIndexColumn()
             ->make();
         }
-        return view('dashboard.report_tracker.index');
+        return view('dashboard.reportTracker.index');
     }
 }

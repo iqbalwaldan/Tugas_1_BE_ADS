@@ -1,23 +1,28 @@
-@extends('dashboard.layouts.main')
+@extends('layouts.app')
 
-@section('container')
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="col-md-10">
-            <div class="p-4">
-                <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Data Report {{ $report->tiket_id }}</h1>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <a class="btn btn-secondary mb-3" href="/dashboard/report" role="button">Kembali</a>
+            <div class="card">
+
+                <div class="card-header text-center h4"><strong>Data Report</strong></div>
+
+                <div class="card-body">
+                    <h6><strong>Nomor Tiket</strong></h6>
+                    <h6>{{ $report->tiket_id }}</h6><br>
+                    <h6><strong>Status</strong></h6>
+                    <h6>{{ $report->status }}</h6><br>
+                    <h6><strong>Categori</strong></h6>
+                    <h6>{{ $report->category->name }}</h6><br>
+                    <h6><strong>Judul Report</strong></h6>
+                    <h6>{{ $report->title }}</h6><br>
+                    <h6><strong>Deskripsi</strong></h6>
+                    <h6>{!! $report->description !!}</h6><br>
                 </div>
-                <h5><strong>Nomor Tiket</strong></h5>
-                <h6>{{ $report->tiket_id }}</h6><br>
-                <h5><strong>Status</strong></h5>
-                <h6>{{ $report->status }}</h6><br>
-                <h5><strong>Categori</strong></h5>
-                <h6>{{ $report->category->name }}</h6><br>
-                <h5><strong>Judul Report</strong></h5>
-                <h6>{{ $report->title }}</h6><br>
-                <h5><strong>Deskripsi</strong></h5>
-                <h6>{!! $report->description !!}</h6><br>
             </div>
         </div>
     </div>
+</div>
 @endsection
