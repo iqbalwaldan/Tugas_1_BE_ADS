@@ -81,7 +81,7 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="evidences" class="form-label">Multiple files input example</label>
+                            <label for="evidences" class="form-label">Upload Bukti Laporan</label>
                             <input class="form-control" type="file" id="evidences" name="evidences[]" multiple>
                         </div>
                         <button class="btn btn-primary btn-user btn-block" type="submit">Kirim Laporan</button>

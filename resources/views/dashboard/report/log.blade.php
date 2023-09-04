@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <a class="btn btn-secondary mb-3" href="/dashboard/report" role="button">Kembali</a>
             <div class="card">
                 <div class="card-header">
                     Activity Log
