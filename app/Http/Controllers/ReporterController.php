@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use App\Models\Reporter;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ReporterController extends Controller
@@ -13,6 +14,7 @@ class ReporterController extends Controller
         return view('reporter.index');
     }
     public function store(Request $request){
+        // dd($request->all());
         $validatedData1 = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email',
@@ -22,7 +24,10 @@ class ReporterController extends Controller
             'pob' => 'required',
             'dob' => 'required',
             'address' => 'required',
+            'evidences.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        
+
         Reporter::create($validatedData1);
 
         $validatedData2 = $request->validate([
@@ -38,7 +43,13 @@ class ReporterController extends Controller
 
         // dd($validatedData);
 
-        Report::create($validatedData2);
+        $report = Report::create($validatedData2);
+
+        if ($request->hasFile('evidences')) {
+            foreach ($request->file('evidences') as $evidence) {
+                $report->addMedia($evidence)->toMediaCollection('evidences');
+            }
+        }
 
         return redirect('/')->with('success', 'New report has been added!');
     }

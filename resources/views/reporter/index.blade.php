@@ -8,7 +8,7 @@
                 <div class="card-header h4 fw-bold text-center">Formulir Pelaporan</div>
 
                 <div class="card-body">
-                    <form action="/reporter" method="POST">
+                    <form action="/reporter" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="name" class="form-label m-0 fw-bold">Nama</label>
@@ -79,6 +79,10 @@
                             @error('body')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="evidences" class="form-label">Multiple files input example</label>
+                            <input class="form-control" type="file" id="evidences" name="evidences[]" multiple>
                         </div>
                         <button class="btn btn-primary btn-user btn-block" type="submit">Kirim Laporan</button>
                     </form>
