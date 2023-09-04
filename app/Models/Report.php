@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Report extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $guarded = [
         'id'
@@ -23,5 +25,13 @@ class Report extends Model
 
     public function report_trackers(){
         return $this->hasMany(Report_tracker::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                ->logOnly(['category_id', 'status'])
+                ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName}")
+                ->useLogName('Reports');
     }
 }

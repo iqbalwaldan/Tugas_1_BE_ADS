@@ -40,3 +40,5 @@ Route::get('/dashboard/report-tracker', [ReportTrackerController::class, 'index'
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard/report/{report}/log', [ReportController::class, 'log'])->name('report.log');

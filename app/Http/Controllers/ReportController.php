@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Report;
-use App\Models\Report_tracker;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Report_tracker;
+use Spatie\Activitylog\Models\Activity;
 use Yajra\DataTables\Facades\DataTables;
 
 class ReportController extends Controller
@@ -30,6 +31,7 @@ class ReportController extends Controller
                 $button ='
                     <a href="/dashboard/report/'.$report->id.'" class="btn btn-info">Show</a>
                     <a href="/dashboard/report/'.$report->id.'/edit" class="btn btn-warning">Edit</a>
+                    <a href="'.route('report.log', $report->id).'" class="btn btn-secondary">Log</a>
                 ';
                 return $button;
             })
@@ -104,5 +106,11 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    public function log(Report $report){
+        return view('dashboard.report.log',[
+            'logs' => Activity::where('subject_type',Report::class)->where('subject_id',$report->id)->latest()->get()
+        ]);
     }
 }
